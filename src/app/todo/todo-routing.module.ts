@@ -4,7 +4,9 @@ import { TodoComponent } from './todo.component';
 import { CreateComponent } from './create/create.component';
 import { UpdateComponent } from './update/update.component';
 
-const routes: Routes = [{ path: '', component: TodoComponent,
+const routes: Routes = [
+  {    path:'',redirectTo:'create',pathMatch:'full'  },
+  { path: '', component: TodoComponent,
 children:[
   {
     path:'create',component:CreateComponent

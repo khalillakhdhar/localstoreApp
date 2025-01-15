@@ -1,1 +1,68 @@
-<p>register works!</p>
+<div class="text-center">
+  <h1>Connexion</h1>
+  <form (submit)="inscription()" #subForm="ngForm">
+
+    <div class="mb-3">
+      <label class="form-label">First name:</label>
+      <input class="form-control" type="text"  name="fn" placeholder="First name here" required [(ngModel)]="user.firstName" #fname="ngModel">
+      <br>
+      <div class="alert alert-danger" *ngIf="fname.invalid && fname.touched">
+        <small *ngIf="fname.errors?.['required']">le nom est obligatoire </small>
+
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Last name:</label>
+      <input class="form-control" type="text" name="ln" placeholder="First name here" required [(ngModel)]="user.lastName" #lname="ngModel">
+      <br>
+      <div class="alert alert-danger" *ngIf="lname.invalid && lname.touched">
+        <small *ngIf="lname.errors?.['required']">le prénom est obligatoire </small>
+
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Age:</label>
+      <input class="form-control" type="text" name="age" placeholder="Age" required [(ngModel)]="user.age" #age="ngModel">
+      <br>
+      <div class="alert alert-danger" *ngIf="age.invalid && age.touched">
+        <small *ngIf="lname.errors?.['required']">l'age est obligatoire </small>
+
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Email:</label>
+      <input class="form-control" type="email" name="email" placeholder="email" required [(ngModel)]="user.email" #email="ngModel">
+      <br>
+      <div class="alert alert-danger" *ngIf="email.invalid && email.touched">
+        <small *ngIf="email.errors?.['required']">l'email est obligatoire </small>
+        <small *ngIf="email.errors?.['email']">veuillez saisir un email valide </small>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Mot de passe:</label>
+      <input class="form-control" type="password" name="mdp" placeholder="votre mot de passe ici" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,30}" minlength="6" required [(ngModel)]="user.password" #password="ngModel">
+      <br>
+      <div class="alert alert-danger" *ngIf="password.invalid && password.touched">
+        <small *ngIf="password.errors?.['required']">le mot de passe est obligatoire </small>
+        <small *ngIf="password.errors?.['pattern']">veuillez saisir un mot de passe valide </small>
+        <small *ngIf="password.errors?.['minlength']">veuillez saisir un mot de passe de longueur  >6</small>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Répéter Mot de passe:</label>
+      <input class="form-control" type="password" name="rmdp" placeholder="répétez votre mot de passe ici" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,30}" minlength="6" required [(ngModel)]="confirmMdp" #rmdp="ngModel">
+      <br>
+      <div class="alert alert-danger" *ngIf="user.password!==confirmMdp && rmdp.touched">
+        <small>les mot de passe ne se correspondent plus</small>
+      </div>
+    </div>
+    <div class="mb-3">
+      <button [disabled]="subForm.invalid" class="btn btn-success">Register</button>
+      <br>
+      <a routerLink="../login">s'inscrire</a>
+    </div>
+
+
+
+  </form>
+</div>

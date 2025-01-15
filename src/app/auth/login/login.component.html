@@ -1,1 +1,32 @@
-<p>login works!</p>
+<div class="container text-center">
+  <h1>Connexion</h1>
+  <form (submit)="connexion()" #authForm="ngForm">
+    <div class="mb-3">
+      <label class="form-label">Email:</label>
+      <input class="form-control" type="email" name="email" placeholder="email" required [(ngModel)]="user.email" #email="ngModel">
+      <br>
+      <div class="alert alert-danger" *ngIf="email.invalid && email.touched">
+        <small *ngIf="email.errors?.['required']">l'email est obligatoire </small>
+        <small *ngIf="email.errors?.['email']">veuillez saisir un email valide </small>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Mot de passe:</label>
+      <input class="form-control" type="password" name="mdp" placeholder="votre mot de passe ici" pattern="[A-Z a-z0-9]{6,30}" minlength="6" required [(ngModel)]="user.password" #password="ngModel">
+      <br>
+      <div class="alert alert-danger" *ngIf="password.invalid && password.touched">
+        <small *ngIf="password.errors?.['required']">le mot de passe est obligatoire </small>
+        <small *ngIf="email.errors?.['pattern']">veuillez saisir un mot de passe valide </small>
+        <small *ngIf="email.errors?.['minlength']">veuillez saisir un mot de passe de longueur  </small>
+      </div>
+    </div>
+    <div class="mb-3">
+      <button [disabled]="authForm.invalid" class="btn btn-success">Se connecter</button>
+      <br>
+      <a routerLink="../register">pas encore membre</a>
+    </div>
+
+
+
+  </form>
+</div>
