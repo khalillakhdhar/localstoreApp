@@ -12,12 +12,11 @@
     </div>
     <div class="mb-3">
       <label class="form-label">Mot de passe:</label>
-      <input class="form-control" type="password" name="mdp" placeholder="votre mot de passe ici" pattern="[A-Z a-z0-9]{6,30}" minlength="6" required [(ngModel)]="user.password" #password="ngModel">
+      <input class="form-control" type="password" name="mdp" placeholder="votre mot de passe ici" minlength="6" required [(ngModel)]="user.password" #password="ngModel">
       <br>
       <div class="alert alert-danger" *ngIf="password.invalid && password.touched">
         <small *ngIf="password.errors?.['required']">le mot de passe est obligatoire </small>
-        <small *ngIf="email.errors?.['pattern']">veuillez saisir un mot de passe valide </small>
-        <small *ngIf="email.errors?.['minlength']">veuillez saisir un mot de passe de longueur  </small>
+
       </div>
     </div>
     <div class="mb-3">

@@ -13,7 +13,7 @@ export class UserService {
 register(user:User): boolean
 {
   const users=this.getAllUsers();
-  if(users.find((u)=>u.email===user.email))
+  if(users.find((u)=>u.email===user.email)) // fonction fléchée (arrow function)
   {
     return false;
   }
@@ -36,7 +36,7 @@ login(email:string , password:string):boolean
 logout()
 {
   localStorage.removeItem(this.authKey);
-  this.router.navigate(['../login'])
+  this.router.navigate(['../auth/login']);
 }
 
 isAuthenticated():boolean
@@ -49,5 +49,6 @@ isAuthenticated():boolean
   {
     const users=localStorage.getItem(this.StorageKey);
     return users ? JSON.parse(users) : [];
+    // tenary operator ? (if) : (else)
   }
 }
